@@ -17,7 +17,7 @@ struct BookDetailsScreen: View {
 	var body: some View {
 		VStack {
 			Text(viewModel.book.title)
-			Button("Update") {
+			Button("Edit") {
 				showUpdateScreen = true
 			}
 		}
