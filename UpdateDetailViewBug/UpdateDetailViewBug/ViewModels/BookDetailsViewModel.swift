@@ -20,4 +20,3 @@ final class BookDetailsViewModel: ObservableObject {
 		self.book = book!
 	}
 }
-
