@@ -9,12 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
 	var body: some View {
-		VStack {
-			Image(systemName: "globe")
-				.imageScale(.large)
-				.foregroundStyle(.tint)
-			Text("Hello, world!")
+		NavigationStack {
+			ScrollView {
+				VStack(spacing: 24) {
+					ForEach(viewModel.books, id: \.title) { book in
+						NavigationLink(book.title) {
+							BookDetailsScreen(book: book)
+						}
+					}
+				}
+			}
 		}
-		.padding()
+		.padding(.vertical, 64)
+		.task { await viewModel.load() }
+		.environmentObject(viewModel)
 	}
+
+	@StateObject private var viewModel: BookListViewModel = .init()
 }
