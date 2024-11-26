@@ -15,8 +15,7 @@ struct UpdateBookScreen: View {
 		VStack {
 			Button("Update") {
 				Task {
-					await bookListViewModel.update(book)
-					update(bookListViewModel.selectedBook)
+					update(await bookListViewModel.update(book))
 					dismiss()
 				}
 			}

@@ -16,10 +16,11 @@ final class BookListViewModel: ObservableObject {
 		books = booksFromBackEnd
 	}
 
-	func update(_ book: Book) async {
+	func update(_ book: Book) async -> Book {
 		let updatedBook = Book(title: String(UUID().uuidString.prefix(6)))
 		booksFromBackEnd = booksFromBackEnd.map { $0.title == book.title ? updatedBook : $0 }
 		await load()
+		return updatedBook
 	}
 
 	private var booksFromBackEnd: [Book] = [
